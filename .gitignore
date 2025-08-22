@@ -1,0 +1,76 @@
+# =========================
+# OS / General
+# =========================
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+.venv*/
+env/
+env*/
+
+# =========================
+# JavaScript / Web
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+
+# Build / Output (optional if using bundlers)
+dist/
+out/
+*.map
+
+# =========================
+# C / C++
+# =========================
+*.o
+*.obj
+*.out
+*.exe
+*.class
+
+# =========================
+# SQL / Databases
+# =========================
+*.sqlite
+*.sqlite3
+*.db
+*.sql~
+
+# =========================
+# IDEs / Editors
+# =========================
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# =========================
+# Archives
+# =========================
+*.zip
+*.tar.gz
+*.rar
