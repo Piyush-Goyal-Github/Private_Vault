@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+{% block content %}
+{% if not cart_items %}
+<div class="text-center">
+    <br>
+    <h1 class="text-center product_title">
+        Your Shopping Cart is empty
+    </h1>
+    <br>
+    <p class="text-center">
+        Please click <a href="{% url 'home' %}">here</a> to continue shopping
+    </p>
+</div>
+{% else %}
+<div class="text-center">
+    <br>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+    <br>
+    <div class="text-center product_title">
+        Your Shopping Cart
+    </div>
+</div>
+<div class="row mx-auto">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table cart_table">
+            <thead class="cart_thead">
+                <tr>
+                    <th colspan="4">Your items</th>
+                </tr>
+            </thead>
+            {% for cart_item in cart_items %}
+            <tr>
+                <td>
+                    <a href="{{cart_item.product.get_url}}">
+                        <img src="{{cart_item.product.image.url}}" width="100" height="100"
+                            alt="{{cart_item.product.image.name}}" />
+                    </a>
+                </td>
+                <td class="text-left">
+                    {{cart_item.product.name}}
+                    <br>
+                    SKU: {{cart_item.product.id}}
+                    <br>
+                    Unit Price: ${{cart_item.product.price}}
+                    <br>
+                    Qty: {{cart_item.quantity}} x ${{cart_item.product.price}}
+                </td>
+                <td>
+                    ${{cart_item.sub_total}}
+                </td>
+                {% if cart_item.quantity < cart_item.product.stock %} <td>
+                    &nbsp; <a href="{% url 'add_cart' cart_item.product.id %}"><i
+                            class="fas fa-plus-circle cart_icon"></i></a>
+                    &nbsp; <a href="{% url 'cart_remove' cart_item.product.id %}"><i
+                            class="fas fa-minus-circle cart_icon"></i></a>
+                    &nbsp; <a href="{% url 'cart_remove_product' cart_item.product.id %}"><i
+                            class="fas fa-trash-alt cart_icon"></i></a>
+                    </td>
+                    {% else %}
+                    <td>
+                        &nbsp; <a href="{% url 'cart_remove' cart_item.product.id %}"><i
+                                class="fas fa-minus-circle cart_icon"></i></a>
+                        &nbsp; <a href="{% url 'cart_remove_product' cart_item.product.id %}"><i
+                                class="fas fa-trash-alt cart_icon"></i></a>
+                    </td>
+                    {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table cart_table">
+            <thead class="cart_thead">
+                <tr>
+                    <th>Check out</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Please review your cart items before proceeding with the payment.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left">
+                        Your total is: <strong>${{total}}</strong>
+                    </td>
+            </tbody>
+        </table>
+        <div class="mx-auto">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{data_key}}"
+                    data-amount="{{stripe_total}}" data-name="XYZ - Store" data-description="{{description}}"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
+                    data-currency="inr" data-shipping-address="true" data-billing-address="true"
+                    data-email="{{ user_email }}"  data-zip-code="true">
+                    </script>
+            </form>
+
+            <a href="{% url 'home' %}" style="text-decoration: none;">
+                <button type="button" class="btn btn-lg btn-block bg-warning font-weight-bold">
+                    Continue Shopping
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<br><br>
+{% endif %}
+
+<script>
+    // JavaScript function to validate ZIP codes before proceeding
+    function validateZipCode() {
+        var billingPostcode = document.getElementById('billing_zip').value;
+        var shippingPostcode = document.getElementById('shipping_zip').value;
+
+        // Check if billing ZIP is numeric
+        if (!/^\d+$/.test(billingPostcode)) {
+            alert("Billing ZIP code must be numeric.");
+            return false;
+        }
+
+        // Check if shipping ZIP is numeric
+        if (!/^\d+$/.test(shippingPostcode)) {
+            alert("Shipping ZIP code must be numeric.");
+            return false;
+        }
+
+        // If both ZIP codes are valid, return true to allow the form submission
+        return true;
+    }
+</script>
+
+{% endblock %}

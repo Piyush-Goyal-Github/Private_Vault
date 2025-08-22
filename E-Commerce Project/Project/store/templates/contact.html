@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+CONTACT
+{% endblock %}
+
+{% block content %}
+
+<div class="container pt-5" style="text-align: center;">
+    <h2>Contact</h2>
+
+    <div class="row p-2" data-aos="fade-up" style="border:1px dashed black; text-align:center">
+        <div class="col-lg-6">
+            <div class="info-box mb-4">
+                <i class="bx bx-map text-warning" style="font-size: 40px"></i>
+                <h3>Our Address</h3>
+                <p>Model Town, Ludhiana, Punjab 141002</p>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+                <i class="bx bx-envelope text-warning" style="font-size: 40px"></i>
+                <h3>Email Us</h3>
+                <p>contact@example.com</p>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+                <i class="bx bx-phone-call text-warning" style="font-size: 40px"></i>
+                <h3>Call Us</h3>
+                <p>+1 5589 55488 55</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center mt-5" data-aos="fade-up">
+        <div class="col-7 pb-5">
+            <form class="post">
+                {% csrf_token %}
+                <div class="card rounded-0">
+                    <div class="card-header p-0">
+                        <div class="bg-dark text-light font-weight-bold text-center py-2">
+                            <h3>Contact</h3>
+                            <p>We will gladly support you</p>
+                        </div>
+                    </div>
+                    <div class="card-cody p-3">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user text-center"></i></span>
+                                </div>
+                                {% render_field form.name class+="form-control" placeholder="Your Name" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope text-center"></i></span>
+                                </div>
+                                {% render_field form.from_email class+="form-control" placeholder="Your Email" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-envelope-open-text text-center"></i></span>
+                                </div>
+                                {% render_field form.subject class+="form-control" placeholder="Your Subject" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-comment text-center"></i></span>
+                                </div>
+                                {% render_field form.message rows="3" class+="form-control" placeholder="Messages" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="btn btn-block bg-warning font-weight-bold rounded-0 py-2 mt-3">Submit</button>
+            </form>
+        </div>
+
+        <div class="col-5">
+            <iframe class="mb-4 mb-lg-0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3423.9584048958195!2d75.83784831430827!3d30.887824581583363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a824d0b497c2b%3A0x521ad7da8d9cf3ed!2sModel%20Town%20Main%20Market%20Rd%2C%20Model%20Town%2C%20Ludhiana%2C%20Punjab%20141002!5e0!3m2!1sen!2sin!4v1591903764601!5m2!1sen!2sin"
+                frameborder="0" style="border:0; width: 100%; height: 455px;" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+#branding h1{
+    color: #ffc107;
+}
+
+#header{
+    background: #343a40;
+    height: 50px;
+}
+
+a:link, a:visited{
+    color: #343a40;
+}
+
+#header a:hover{
+    color: #f5dd5d;
+}
+
+#user-tools a:focus, #user-tools a:hover{
+    border-bottom-color: #f5dd5d;
+}
+
+div.breadcrumbs{
+    background: #515253;
+    color: #f5dd5d;
+}
+
+.module h2, .module caption, .inline-group h2{
+    background: #343a40;
+}
+
+a.section:link, a.section:visited {
+    color: white;
+}
+
+div.breadcrumbs a:focus, div.breadcrumbs a:hover{
+    color: #f5dd5d !important;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+    background: #343a40;
+    font-weight: bold;
+}
+
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover{
+    background: #ffc107;
+    color: black;
+    font-weight: bold;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover{
+    background: #ffc107;
+    color: black;
+    font-weight: bold;
+}
+
+.login #header h1 a{
+    color: #f5dd5d !important;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default{
+    background: #535455;
+    font-weight: bold;
+}
+
+.selector-chosen h2{
+    background: #343a40 !important;
+}
+
+.object-tools a:hover{
+    background: #ffc107;
+    color: black;
+    font-weight: bold;
+}
